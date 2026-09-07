@@ -4,8 +4,10 @@ import infoImg from '../assets/info.png'
 import visitImg from '../assets/visit.png'
 
 export default function Intent() {
-  const { brand, brandKey } = useFlow()
+  const { brand, brandKey, theme } = useFlow()
   if (!brand) return <Navigate to="/" replace />
+
+  const serviceUrl = 'https://sites.google.com/view/autofranciacochabamba?usp=sharing'
 
   const items = [
     {
@@ -90,6 +92,31 @@ export default function Intent() {
           )
         })}
       </div>
+
+      <a
+        href={serviceUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="af-hover-fade"
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: 18,
+          marginTop: 18,
+          padding: '18px 20px',
+          border: '1px solid var(--af-line, rgba(18,16,15,.16))',
+          borderRadius: 4,
+          background: theme.surface,
+          color: theme.ink,
+        }}
+      >
+        <span>
+          <strong style={{ display: 'block', fontFamily: 'Archivo, sans-serif', fontSize: 16 }}>Servicio técnico Auto Francia</strong>
+          <span style={{ display: 'block', marginTop: 4, fontSize: 13, color: 'var(--af-mut, #6E6A65)' }}>Conoce nuestro servicio de postventa y repuestos.</span>
+        </span>
+        <span style={{ flex: '0 0 auto', fontFamily: 'Archivo, sans-serif', fontSize: 13 }}>Ver información ↗</span>
+      </a>
     </section>
   )
 }

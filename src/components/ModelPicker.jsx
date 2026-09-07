@@ -4,12 +4,14 @@ import img2008 from '../assets/2008.png'
 import img3008 from '../assets/3008Main.png'
 import imgTracker from '../assets/tracker.png'
 import imgMontana from '../assets/montana.png'
+import imgOnix from '../assets/onix.png'
 
 const MODEL_IMAGES = {
   '2008': img2008,
   '3008': img3008,
   tracker: imgTracker,
   montana: imgMontana,
+  onix: imgOnix,
 }
 
 export default function ModelPicker({ models, selected, onSelect, theme }) {

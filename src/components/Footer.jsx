@@ -1,4 +1,6 @@
 const MAPS_URL = 'https://maps.app.goo.gl/4AHTHJz47V8kMF446'
+const CORPORATE_PHONE = '71741577'
+const SERVICE_URL = 'https://sites.google.com/view/autofranciacochabamba?usp=sharing'
 
 export default function Footer() {
   return (
@@ -23,6 +25,12 @@ export default function Footer() {
           style={{ borderBottom: '1px solid var(--af-line, rgba(18,16,15,.12))' }}
         >
           Av. Beijing esq. Jes&uacute;s Aguayo, Cochabamba &mdash; ver en Google Maps
+        </a>
+        <a href={`tel:+591${CORPORATE_PHONE}`}>
+          Corporativo: +591 {CORPORATE_PHONE}
+        </a>
+        <a href={SERVICE_URL} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'Archivo, sans-serif', fontWeight: 600 }}>
+          Servicio t&eacute;cnico ↗
         </a>
       </div>
     </footer>

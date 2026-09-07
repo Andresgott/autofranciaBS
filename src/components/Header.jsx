@@ -4,6 +4,7 @@ import peugeotLogo from '../assets/peugeot-clear.png'
 import chevroletLogo from '../assets/chevrolet-clear.png'
 
 const MAPS_URL = 'https://maps.app.goo.gl/4AHTHJz47V8kMF446'
+const CORPORATE_PHONE = '71741577'
 
 export default function Header({ brand }) {
   return (
@@ -12,8 +13,11 @@ export default function Header({ brand }) {
         position: 'sticky',
         top: 0,
         zIndex: 40,
-        background: '#FFFFFF',
-        borderBottom: '1px solid rgba(18,16,15,.10)',
+        background: 'rgba(255,255,255,.66)',
+        borderBottom: '1px solid rgba(255,255,255,.72)',
+        boxShadow: '0 8px 28px rgba(18,16,15,.08)',
+        backdropFilter: 'blur(18px)',
+        WebkitBackdropFilter: 'blur(18px)',
       }}
     >
       <div
@@ -68,6 +72,13 @@ export default function Header({ brand }) {
           }}
         >
           Showroom Cochabamba &middot; Av. Beijing esq. Jes&uacute;s Aguayo ↗
+        </a>
+        <a
+          href={`tel:+591${CORPORATE_PHONE}`}
+          className="af-link-hover"
+          style={{ fontFamily: 'Archivo, sans-serif', fontSize: 11, letterSpacing: '.08em', color: 'rgba(18,16,15,.62)' }}
+        >
+          Corporativo: +591 {CORPORATE_PHONE}
         </a>
       </div>
     </header>

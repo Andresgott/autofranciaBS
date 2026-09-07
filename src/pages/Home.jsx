@@ -4,6 +4,8 @@ import chevroletLogo from '../assets/chevrolet-clear.png'
 import peugeotHero from '../assets/3008Main.png'
 import chevroletHero from '../assets/tracker.png'
 
+const SERVICE_URL = 'https://sites.google.com/view/autofranciacochabamba?usp=sharing'
+
 export default function Home() {
   return (
     <section
@@ -86,8 +88,25 @@ export default function Home() {
               pointerEvents: 'none',
             }}
           />
-          <div style={{ position: 'absolute', top: 22, left: 22, background: '#fff', padding: '10px 12px', borderRadius: 2, pointerEvents: 'none' }}>
-            <img src={peugeotLogo} alt="Peugeot" style={{ height: 44, width: 'auto', display: 'block' }} />
+          <div
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              height: 82,
+              display: 'flex',
+              alignItems: 'center',
+              padding: '12px 22px',
+              background: 'rgba(255,255,255,.30)',
+              borderBottom: '1px solid rgba(255,255,255,.42)',
+              boxShadow: '0 8px 24px rgba(0,0,0,.10)',
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
+              pointerEvents: 'none',
+            }}
+          >
+            <img src={peugeotLogo} alt="Peugeot" style={{ height: 52, width: 'auto', display: 'block' }} />
           </div>
           <Link
             to="/peugeot"
@@ -95,7 +114,7 @@ export default function Home() {
             style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: 22, color: '#F2F1EF' }}
           >
             <p style={{ margin: '0 0 8px', fontFamily: 'Archivo, sans-serif', fontSize: 10, letterSpacing: '.22em', textTransform: 'uppercase', color: 'rgba(242,241,239,.66)' }}>
-              Peugeot 2008 &middot; Peugeot 3008
+              NEW PEUGEOT 2008 &middot; NEW PEUGEOT 3008
             </p>
             <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 16 }}>
               <h2 style={{ margin: 0, fontFamily: 'Archivo, sans-serif', fontWeight: 600, fontSize: 'clamp(26px,3.4vw,38px)', letterSpacing: '-.03em', lineHeight: 1 }}>
@@ -132,8 +151,25 @@ export default function Home() {
               pointerEvents: 'none',
             }}
           />
-          <div style={{ position: 'absolute', top: 22, left: 22, background: '#fff', padding: '12px 14px', borderRadius: 2, pointerEvents: 'none' }}>
-            <img src={chevroletLogo} alt="Chevrolet" style={{ height: 36, width: 'auto', display: 'block' }} />
+          <div
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              height: 82,
+              display: 'flex',
+              alignItems: 'center',
+              padding: '12px 22px',
+              background: 'rgba(255,255,255,.30)',
+              borderBottom: '1px solid rgba(255,255,255,.52)',
+              boxShadow: '0 8px 24px rgba(0,0,0,.10)',
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
+              pointerEvents: 'none',
+            }}
+          >
+            <img src={chevroletLogo} alt="Chevrolet" style={{ height: 42, width: 'auto', display: 'block' }} />
           </div>
           <Link
             to="/chevrolet"
@@ -141,7 +177,7 @@ export default function Home() {
             style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: 22, color: '#F5F5F6' }}
           >
             <p style={{ margin: '0 0 8px', fontFamily: 'Archivo, sans-serif', fontSize: 10, letterSpacing: '.22em', textTransform: 'uppercase', color: 'rgba(245,245,246,.72)' }}>
-              Chevrolet Tracker &middot; Chevrolet Montana
+              Chevrolet Tracker &middot; Chevrolet Montana &middot; Chevrolet Onix
             </p>
             <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 16 }}>
               <h2 style={{ margin: 0, fontFamily: 'Archivo, sans-serif', fontWeight: 600, fontSize: 'clamp(26px,3.4vw,38px)', letterSpacing: '-.03em', lineHeight: 1 }}>
@@ -152,6 +188,30 @@ export default function Home() {
           </Link>
         </div>
       </div>
+
+      <a
+        href={SERVICE_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="af-hover-fade"
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: 18,
+          marginTop: 18,
+          padding: '18px 20px',
+          border: '1px solid rgba(18,16,15,.16)',
+          borderRadius: 4,
+          background: 'rgba(255,255,255,.62)',
+        }}
+      >
+        <span>
+          <strong style={{ display: 'block', fontFamily: 'Archivo, sans-serif', fontSize: 16 }}>Servicio técnico Auto Francia</strong>
+          <span style={{ display: 'block', marginTop: 4, fontSize: 13, color: 'rgba(18,16,15,.58)' }}>Conoce nuestro servicio de postventa y repuestos.</span>
+        </span>
+        <span style={{ flex: '0 0 auto', fontFamily: 'Archivo, sans-serif', fontSize: 13 }}>Ver información ↗</span>
+      </a>
     </section>
   )
 }

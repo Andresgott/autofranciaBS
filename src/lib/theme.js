@@ -10,8 +10,8 @@ export const BRANDS = {
     label: 'Peugeot',
     api: 'PEUGEOT',
     models: [
-      { id: '2008', name: 'Peugeot 2008' },
-      { id: '3008', name: 'Peugeot 3008' },
+      { id: '2008', name: 'NEW PEUGEOT 2008' },
+      { id: '3008', name: 'NEW PEUGEOT 3008' },
     ],
   },
   chevrolet: {
@@ -21,6 +21,7 @@ export const BRANDS = {
     models: [
       { id: 'tracker', name: 'Chevrolet Tracker' },
       { id: 'montana', name: 'Chevrolet Montana' },
+      { id: 'onix', name: 'Chevrolet Onix' },
     ],
   },
 }
