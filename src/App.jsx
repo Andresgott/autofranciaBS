@@ -9,6 +9,7 @@ import Info from './pages/Info.jsx'
 import Schedule from './pages/Schedule.jsx'
 import { BRANDS, getTheme, formatLongDate } from './lib/theme.js'
 import * as api from './api/autofranciaApi.js'
+import { ConversationProvider } from '@elevenlabs/react'
 
 function Layout() {
   const params = useParams()
@@ -218,13 +219,15 @@ export function useFlow() {
 
 export default function App() {
   return (
-    <Routes>
-      <Route element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path=":brand" element={<Intent />} />
-        <Route path=":brand/info" element={<Info />} />
-        <Route path=":brand/schedule" element={<Schedule />} />
-      </Route>
-    </Routes>
+    <ConversationProvider>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path=":brand" element={<Intent />} />
+          <Route path=":brand/info" element={<Info />} />
+          <Route path=":brand/schedule" element={<Schedule />} />
+        </Route>
+      </Routes>
+    </ConversationProvider>
   )
 }

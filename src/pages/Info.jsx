@@ -4,9 +4,10 @@ import ModelPicker from '../components/ModelPicker.jsx'
 import LeadForm from '../components/LeadForm.jsx'
 import CtaButton from '../components/CtaButton.jsx'
 import { missingHint } from '../lib/theme.js'
+import VirtualAssistant from '../components/VirtualAssistant.jsx'
 
 export default function Info() {
-  const { brand, brandKey, theme, model, setModel, name, setName, dial, setDial, phone, setPhone, valid, submit } = useFlow()
+  const { brand, brandKey, theme, model, setModel, name, setName, dial, setDial, phone, setPhone, valid, submit, modelName } = useFlow()
   if (!brand) return <Navigate to="/" replace />
 
   const hint = missingHint({ model, intent: 'info', time: true, valid, dial, phone })
@@ -39,6 +40,7 @@ export default function Info() {
       <LeadForm name={name} onName={setName} dial={dial} onDial={setDial} phone={phone} onPhone={setPhone} />
 
       <CtaButton label="Solicitar información por WhatsApp" hint={hint} ok={valid} onClick={submit} />
+      <VirtualAssistant brand={brand} modelName={modelName} name={name} dial={dial} phone={phone} intent="info" theme={theme} />
     </section>
   )
 }

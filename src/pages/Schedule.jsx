@@ -4,6 +4,7 @@ import ModelPicker from '../components/ModelPicker.jsx'
 import LeadForm from '../components/LeadForm.jsx'
 import CtaButton from '../components/CtaButton.jsx'
 import { DOW, MON, parseDate, dateStyle, pillStyle, missingHint } from '../lib/theme.js'
+import VirtualAssistant from '../components/VirtualAssistant.jsx'
 
 export default function Schedule() {
   const {
@@ -179,6 +180,7 @@ export default function Schedule() {
       )}
 
       <CtaButton label="Confirmar visita por WhatsApp" hint={hint} ok={valid} onClick={submit} />
+      <VirtualAssistant brand={brand} modelName={modelName} name={name} dial={dial} phone={phone} intent="schedule" date={date} time={time} theme={theme} />
     </section>
   )
 }
