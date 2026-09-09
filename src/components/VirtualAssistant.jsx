@@ -82,7 +82,17 @@ export default function VirtualAssistant({ brand, modelName, name, dial, phone, 
 
       const tokenResponse = await fetch('/api/elevenlabs-token', { headers: { Accept: 'application/json' }, cache: 'no-store' })
       const tokenData = await tokenResponse.json().catch(() => ({}))
-      if (!tokenResponse.ok || !tokenData.token) throw new Error('token_failed')
+      if (!tokenResponse.ok || !tokenData.token) {
+        const tokenError = new Error('token_failed')
+        tokenError.diagnostics = {
+          httpStatus: tokenResponse.status,
+          upstreamStatus: tokenData.upstreamStatus || 0,
+          upstreamType: tokenData.upstreamType || 'unknown',
+          upstreamCode: tokenData.upstreamCode || 'unknown',
+          upstreamMessage: tokenData.upstreamMessage || 'no server diagnostic',
+        }
+        throw tokenError
+      }
 
       setConversationId(tokenData.conversationId || '')
       startSession({
@@ -164,6 +174,7 @@ function logVoiceError(stage, cause) {
     stage,
     name: cause?.name || 'Error',
     message: cause?.message || 'Unknown error',
+    diagnostics: cause?.diagnostics,
   })
 }
 

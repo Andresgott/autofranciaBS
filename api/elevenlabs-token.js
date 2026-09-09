@@ -39,7 +39,13 @@ export default async function handler(req, res) {
         keyFingerprint: fingerprint(apiKey),
         keyLength: apiKey.length,
       })
-      return res.status(502).json({ error: 'token_unavailable' })
+      return res.status(502).json({
+        error: 'token_unavailable',
+        upstreamStatus: upstream.status,
+        upstreamType: detail?.type || 'unknown',
+        upstreamCode: detail?.code || 'unknown',
+        upstreamMessage: detail?.message || 'no upstream message',
+      })
     }
 
     return res.status(200).json({
@@ -48,7 +54,7 @@ export default async function handler(req, res) {
     })
   } catch (error) {
     console.error('ElevenLabs token request could not be completed', { name: error?.name || 'unknown' })
-    return res.status(502).json({ error: 'token_unavailable' })
+    return res.status(502).json({ error: 'token_unavailable', upstreamStatus: 0, upstreamMessage: 'request_failed' })
   }
 }
 
