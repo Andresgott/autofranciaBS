@@ -8,7 +8,7 @@ const ACTIVE = 'active'
 
 export default function VirtualAssistant({ brand, modelName, name, dial, phone, intent, date, time, theme }) {
   const { startSession, endSession } = useConversationControls()
-  const { status } = useConversationStatus()
+  const { status, message: statusMessage } = useConversationStatus()
   const { isMuted, setMuted } = useConversationInput()
   const { isSpeaking, isListening } = useConversationMode()
   const [phase, setPhase] = useState(IDLE)
@@ -26,11 +26,15 @@ export default function VirtualAssistant({ brand, modelName, name, dial, phone, 
     activeRef.current = status === 'connecting' || status === 'connected'
     if (status === 'connected') setPhase(ACTIVE)
     if (status === 'error') {
+      console.error('[AutoFrancia] Claudia connection error', {
+        status,
+        message: statusMessage || 'ElevenLabs returned a connection error',
+      })
       setPhase(IDLE)
       setError('No pudimos iniciar la conversación. Intenta nuevamente.')
       busyRef.current = false
     }
-  }, [status])
+  }, [status, statusMessage])
 
   useEffect(() => {
     return () => {
@@ -55,7 +59,8 @@ export default function VirtualAssistant({ brand, modelName, name, dial, phone, 
         model: modelName,
         virtualAssistantUsed: true,
       })
-    } catch {
+    } catch (cause) {
+      logVoiceError('lead_registration', cause)
       busyRef.current = false
       setPhase(IDLE)
       setError('No pudimos registrar tu solicitud. Intenta nuevamente.')
@@ -63,6 +68,7 @@ export default function VirtualAssistant({ brand, modelName, name, dial, phone, 
     }
 
     if (!leadResponse || !leadResponse.leadId) {
+      console.error('[AutoFrancia] Claudia lead registration returned no leadId')
       busyRef.current = false
       setPhase(IDLE)
       setError('No pudimos registrar tu solicitud. Intenta nuevamente.')
@@ -95,6 +101,7 @@ export default function VirtualAssistant({ brand, modelName, name, dial, phone, 
       })
       busyRef.current = false
     } catch (cause) {
+      logVoiceError('microphone_token_or_session', cause)
       busyRef.current = false
       setPhase(IDLE)
       if ((cause && cause.name === 'NotAllowedError') || (cause && cause.message === 'microphone_denied')) {
@@ -150,6 +157,14 @@ export default function VirtualAssistant({ brand, modelName, name, dial, phone, 
       {error && <p role="alert" style={{ margin: phase === IDLE ? '14px 0 0' : 0, fontSize: 13, lineHeight: 1.5, color: '#A43D32' }}>{error}</p>}
     </div>
   )
+}
+
+function logVoiceError(stage, cause) {
+  console.error('[AutoFrancia] Claudia error', {
+    stage,
+    name: cause?.name || 'Error',
+    message: cause?.message || 'Unknown error',
+  })
 }
 
 const statusStyle = { margin: 0, fontFamily: 'Archivo, sans-serif', fontWeight: 600, fontSize: 14 }

@@ -1,3 +1,5 @@
+import { createHash } from 'node:crypto'
+
 export default async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store, max-age=0')
   res.setHeader('Content-Type', 'application/json')
@@ -34,6 +36,8 @@ export default async function handler(req, res) {
         type: detail?.type || 'unknown',
         code: detail?.code || 'unknown',
         message: detail?.message || 'no upstream message',
+        keyFingerprint: fingerprint(apiKey),
+        keyLength: apiKey.length,
       })
       return res.status(502).json({ error: 'token_unavailable' })
     }
@@ -50,4 +54,8 @@ export default async function handler(req, res) {
 
 function cleanEnvValue(value) {
   return String(value || '').trim().replace(/^['"]|['"]$/g, '')
+}
+
+function fingerprint(value) {
+  return createHash('sha256').update(value).digest('hex').slice(0, 12)
 }
